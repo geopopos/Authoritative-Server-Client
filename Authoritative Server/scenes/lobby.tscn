@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://d4h8mocck7w8c"]
+
+[ext_resource type="Script" path="res://scenes/lobby.gd" id="1_xgqp5"]
+
+[node name="Lobby" type="Node2D"]
+script = ExtResource("1_xgqp5")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CenterContainer"]
+layout_mode = 2
+
+[node name="PortLabel" type="Label" parent="CanvasLayer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Server Port"
+
+[node name="Port" type="TextEdit" parent="CanvasLayer/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 30)
+layout_mode = 2
+placeholder_text = "5000"
+
+[node name="MaxPlayersLabel" type="Label" parent="CanvasLayer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Max Players"
+
+[node name="MaxPlayers" type="TextEdit" parent="CanvasLayer/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 30)
+layout_mode = 2
+placeholder_text = "20"
+
+[node name="Start" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Start Server"
+
+[connection signal="pressed" from="CanvasLayer/CenterContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
