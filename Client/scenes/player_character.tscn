@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dukvwrmma16rg"]
+[gd_scene load_steps=7 format=3 uid="uid://dukvwrmma16rg"]
 
 [ext_resource type="Texture2D" uid="uid://8lgk7quyd8nt" path="res://icon.svg" id="1_iibtj"]
+[ext_resource type="Script" path="res://scenes/player_character.gd" id="1_ljcig"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jml63"]
 
@@ -33,6 +34,8 @@ _data = {
 }
 
 [node name="PlayerCharacter" type="CharacterBody2D"]
+collision_mask = 2
+script = ExtResource("1_ljcig")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 6.28319
