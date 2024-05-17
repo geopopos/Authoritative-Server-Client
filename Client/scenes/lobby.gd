@@ -8,3 +8,5 @@ func _on_connect_to_game_pressed():
 	var error = Server.connect_to_game(ip_address, port, your_name)
 	if error == ERR_CANT_CREATE:
 		$CanvasLayer/CenterContainer/VBoxContainer2/ErrorLabel.text = "Error: Could Not Connect To Server. Please Try Again."
+	else:
+		get_tree().change_scene_to_file("res://scenes/game.tscn")

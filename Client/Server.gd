@@ -13,10 +13,13 @@ var player_info = {"name": "Name"}
 
 var player_character = preload("res://scenes/player_character.tscn")
 
+var game_scene
+
 func _ready():
 	multiplayer.connected_to_server.connect(_on_connected_ok)
 	multiplayer.connection_failed.connect(_on_connected_failed)
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
+	
 
 	
 	
@@ -38,8 +41,7 @@ func connect_to_game(ip = "", port=7000, player_name = ""):
 	
 	print("client initialized")
 	
-	#await get_tree().create_timer(2).timeout
-	#$/root/Game/Players.add_child(player_character.instantiate())
+	#game_scene = $/root/Game
 	
 func _on_connected_ok():
 	print("connected to server!")
@@ -57,3 +59,13 @@ func _on_server_disconnected():
 	players.clear()
 	print("server disconnected")
 	server_disconnected.emit()
+
+@rpc("reliable")
+func load_player(id, new_player_info):
+	if id == multiplayer.get_unique_id():
+		player_info = new_player_info
+	var players_container = $/root/Game.get_node("Players")
+	var new_character = player_character.instantiate()
+	new_character.name = str(id)
+	new_character.position = Vector2(new_player_info['pos']['x'], new_player_info['pos']['y'])
+	players_container.add_child(new_character)

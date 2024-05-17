@@ -12,6 +12,7 @@ var players = {}
 
 var players_loaded = 0
 
+var game_scene
 
 func _ready():
 	multiplayer.peer_connected.connect(_on_player_connected)
@@ -21,9 +22,15 @@ func _ready():
 	
 func _on_player_connected(id):
 	print("new player connected")
-	players[id] = "player " + str(id)
+	$/root/Game.add_new_player(id)
+	#players[id] = "player " + str(id)
+	load_player.rpc(id, players[id])
 	
-	
+
+@rpc("reliable")
+func load_player(id, player_info):
+	pass
+
 func _on_player_disconnected(id):
 	players.erase(id)
 	player_disconnected.emit(id)
@@ -43,3 +50,5 @@ func start_server(port=5000, max_players=10):
 		return error
 	multiplayer.multiplayer_peer = peer
 	print("server initialized")
+	
+	#game_scene = $/root/Game

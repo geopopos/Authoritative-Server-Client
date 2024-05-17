@@ -7,3 +7,5 @@ func _on_start_pressed():
 	var max_connections = int($CanvasLayer/CenterContainer/VBoxContainer/MaxPlayers.text)
 	
 	Server.start_server(port, max_connections)
+	
+	get_tree().change_scene_to_file("res://scenes/game.tscn")

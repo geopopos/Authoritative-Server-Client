@@ -1,9 +1,11 @@
-[gd_scene format=3 uid="uid://d1bdwy20kvaas"]
+[gd_scene load_steps=2 format=3 uid="uid://d1bdwy20kvaas"]
+
+[ext_resource type="Script" path="res://scenes/game.gd" id="1_gsa6x"]
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_gsa6x")
 
 [node name="Players" type="Node2D" parent="."]
 
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://scenes/player_character.tscn")
-spawn_path = NodePath("../Players")
+[node name="InitialPlayerSpawn" type="Marker2D" parent="."]
+position = Vector2(607, 330)
