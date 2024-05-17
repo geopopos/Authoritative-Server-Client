@@ -35,6 +35,11 @@ func _on_player_disconnected(id):
 	players.erase(id)
 	player_disconnected.emit(id)
 	print("player disconnected: player " + str(id))
+	# remove player from scene
+	var player = $/root/Game/Players.get_node(str(id))
+	player.queue_free()
+	
+	
 	
 func start_server(port=5000, max_players=10):
 	if port == 0:
