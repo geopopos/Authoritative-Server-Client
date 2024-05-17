@@ -11,5 +11,4 @@ func _physics_process(delta):
 
 @rpc("any_peer", "unreliable")
 func get_input(input_vector: Vector2):
-	print("input vector: ", input_vector)
 	input = input_vector

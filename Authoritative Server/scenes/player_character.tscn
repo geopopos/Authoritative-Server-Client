@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://fdunfsplvtb"]
+[gd_scene load_steps=13 format=3 uid="uid://fdunfsplvtb"]
 
 [ext_resource type="Script" path="res://scenes/player_character.gd" id="1_6v2a6"]
 [ext_resource type="Texture2D" uid="uid://bpa00haoj4ro5" path="res://icon.svg" id="1_ch3g4"]
 [ext_resource type="PackedScene" uid="uid://o0ljpkmjmm03" path="res://components/top_down_movement_input.tscn" id="3_u6lh6"]
 [ext_resource type="Resource" uid="uid://iddqsnhf8ob1" path="res://components/player_movement_stats.tres" id="4_v4i0d"]
+[ext_resource type="Script" path="res://components/battle_components/hurt_box.gd" id="5_c6ki7"]
+[ext_resource type="Script" path="res://components/battle_components/hit_box.gd" id="6_c4o6b"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w1l5r"]
 
@@ -35,6 +37,12 @@ _data = {
 "spinny": SubResource("Animation_jw22o")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i2mw8"]
+size = Vector2(113, 116)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jqonm"]
+size = Vector2(20, 117)
+
 [node name="PlayerCharacter" type="CharacterBody2D"]
 collision_mask = 2
 script = ExtResource("1_6v2a6")
@@ -58,3 +66,19 @@ autoplay = "spinny"
 [node name="TopDownMovementInput" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("3_u6lh6")]
 actor = NodePath("..")
 top_down_movement_stats = ExtResource("4_v4i0d")
+
+[node name="HurtBoxComponent" type="Area2D" parent="."]
+collision_mask = 0
+script = ExtResource("5_c6ki7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
+position = Vector2(0.5, -1)
+shape = SubResource("RectangleShape2D_i2mw8")
+
+[node name="HitBoxComponent" type="Area2D" parent="."]
+collision_layer = 0
+script = ExtResource("6_c4o6b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+position = Vector2(80, -0.5)
+shape = SubResource("RectangleShape2D_jqonm")

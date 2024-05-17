@@ -59,6 +59,7 @@ func _on_server_disconnected():
 	players.clear()
 	print("server disconnected")
 	server_disconnected.emit()
+	get_tree().change_scene_to_file("res://scenes/lobby.tscn")
 
 @rpc("reliable")
 func load_player(id, new_player_info):
