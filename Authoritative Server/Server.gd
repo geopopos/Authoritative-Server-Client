@@ -24,7 +24,7 @@ func _on_player_connected(id):
 	print("new player connected")
 	$/root/Game.add_new_player(id)
 	#players[id] = "player " + str(id)
-	load_player.rpc(id, players[id])
+	#load_player.rpc(id, players[id])
 	
 
 @rpc("reliable")

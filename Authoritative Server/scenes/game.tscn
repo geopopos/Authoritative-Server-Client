@@ -9,3 +9,7 @@ script = ExtResource("1_gsa6x")
 
 [node name="InitialPlayerSpawn" type="Marker2D" parent="."]
 position = Vector2(607, 330)
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://scenes/player_character.tscn")
+spawn_path = NodePath("../Players")
