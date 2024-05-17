@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="TopDownMovementStats" load_steps=2 format=3 uid="uid://vn14pgsq3p2h"]
+
+[ext_resource type="Script" path="res://components/top_down_movement_stats.gd" id="1_0uvmj"]
+
+[resource]
+script = ExtResource("1_0uvmj")
+speed = 200

@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dukvwrmma16rg"]
+[gd_scene load_steps=8 format=3 uid="uid://dukvwrmma16rg"]
 
 [ext_resource type="Texture2D" uid="uid://8lgk7quyd8nt" path="res://icon.svg" id="1_iibtj"]
 [ext_resource type="Script" path="res://scenes/player_character.gd" id="1_ljcig"]
+[ext_resource type="PackedScene" uid="uid://dkrl8oyorbqu" path="res://components/top_down_movement_input.tscn" id="3_44rlw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jml63"]
 
@@ -52,3 +53,6 @@ libraries = {
 "": SubResource("AnimationLibrary_yuidf")
 }
 autoplay = "spinny"
+
+[node name="TopDownMovementInput" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("3_44rlw")]
+actor = NodePath("..")
