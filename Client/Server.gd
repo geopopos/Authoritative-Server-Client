@@ -1,6 +1,7 @@
 extends Node
 
 signal server_disconnected
+signal server_connection_failed
 
 const PORT = 7000
 const DEFAULT_SERVER_IP = "127.0.0.1"
@@ -39,7 +40,7 @@ func connect_to_game(ip = "", port=7000, player_name = ""):
 		return error
 	multiplayer.multiplayer_peer = peer
 	
-	print("client initialized")
+	print("client initializing")
 	
 	#game_scene = $/root/Game
 	
@@ -49,10 +50,12 @@ func _on_connected_ok():
 	players[peer_id] = player_info
 	print("Give peer id: " + str(peer_id))
 	connected_to_game_server.emit()
+	get_tree().change_scene_to_file("res://scenes/game.tscn")
 	
 func _on_connected_failed():
 	multiplayer.multiplayer_peer = null
 	print("failed to connect to server")
+	server_connection_failed.emit()
 	
 func _on_server_disconnected():
 	multiplayer.multiplayer_peer = null
